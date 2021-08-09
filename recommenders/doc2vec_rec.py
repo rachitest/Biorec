@@ -2,7 +2,7 @@ import gensim.models
 import glob
 import nltk
 
-import data_cleaning as dataClean
+import cleaners.data_cleaning as dataClean
 import multiprocessing as mp
 import numpy as np
 import pandas as pd

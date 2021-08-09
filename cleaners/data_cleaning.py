@@ -84,7 +84,7 @@ def processCorpus(data):
 
     return wiki_token
 
-def preprocess_sentences(text, lemma_func):
+def preprocess_sentences(text):
     stop_words = set(stopwords.words("english"))
     verb_codes = {"VB", "VBD", "VBG", "VBN", "VBP", "VBZ"}
 
@@ -113,9 +113,9 @@ def preprocess_sentences(text, lemma_func):
 
     return finalsent
 
-def multiprocessApply(function, corpus, data_col, new_col, lemma_func):
+def multiprocessApply(function, corpus, data_col, new_col):
     with mp.Pool(mp.cpu_count()) as pool:
-        corpus[new_col] = pool.map(function, corpus[data_col], lemma_func)
+        corpus[new_col] = pool.map(function, corpus[data_col])
 
     return corpus
 
@@ -134,4 +134,4 @@ if __name__ == "__main__":
 
     wiki_token = processCorpus(wikicfp)
 
-    wiki_token = multiprocessApply(preprocess_sentences, wiki_token, "soup", "processed_soup", lemma_func = lemmatizer)
+    wiki_token = multiprocessApply(preprocess_sentences, wiki_token, "soup", "processed_soup")
