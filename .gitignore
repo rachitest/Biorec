@@ -1,0 +1,13 @@
+.vscode
+pyproject.toml
+*.csv
+*.yaml
+.devcontainer
+*.xlsx
+test.zip
+*.pkl
+*.pdf
+*.pptx
+*.db
+__pycache__
+Conference Recommendations_files
