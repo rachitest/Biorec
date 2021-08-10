@@ -1,15 +1,11 @@
-import gensim.models
 import nltk
 import streamlit as st
 
-import multiprocessing as mp
-import numpy as np
-import pandas as pd
+from io import StringIO
 
-from io import StringIO, BytesIO
-from nltk.corpus import stopwords
-from nltk.stem import WordNetLemmatizer
-from rank_bm25 import BM25Okapi as bm
+from cleaners.data_cleaning import readFolderST, betterDates, uniqueConfsPerYear, setLemmatizer, multiprocessApply, processCorpus, preprocessSentences
+from recommenders.bm25_rec import createBMObject, getBM25Ranks, getRecs
+from recommenders.doc2vec_rec import createDoc2VecObject, createModel, getDoc2VecScores, getDoc2VecRecs
 
 st.set_page_config("Conference Recommendations", None, layout = "wide")
 st.title("Conference Recommendations")
@@ -53,7 +49,7 @@ else:
 # process corpus to get it into the list of lists format used by BM25 and Doc2Vec
 if wikicfp is not None:
     wiki_token = processCorpus(wikicfp)
-    wiki_token = multiprocessApply(preprocess_sentences, wiki_token, "soup", "processed_soup")
+    wiki_token = multiprocessApply(preprocessSentences, wiki_token, "soup", "processed_soup")
     st.write("The following is a sample of your tokenized corpus:")
     st.dataframe(wiki_token.head(1000), 1080)
 
@@ -71,7 +67,7 @@ if rec_type == "BM25" and query_type == "Textbox":
         st.write("Please enter the query you want conference recommendations for")
         st.stop()
     bm25_model = createBMObject(wiki_token, "processed_soup")
-    query_scores = getBM25Ranks(preprocess_sentences, query, bm25_model)
+    query_scores = getBM25Ranks(preprocessSentences, query, bm25_model)
     recs = getRecs(query_scores, number_of_recs, wikicfp)
     st.write(f"Here are the top {number_of_recs} recommendations for your query 🎉:")
     st.table(recs[["Conference Title", "Conference Webpage"]])
@@ -85,7 +81,7 @@ elif rec_type == "BM25" and query_type == "File":
         st.write("Please enter the query you want conference recommendations for")
         st.stop()
     bm25_model = createBMObject(wiki_token, "processed_soup")
-    query_scores = getBM25Ranks(preprocess_sentences, query_string, bm25_model)
+    query_scores = getBM25Ranks(preprocessSentences, query_string, bm25_model)
     recs = getRecs(query_scores, number_of_recs, wikicfp)
     st.write(f"Here are the top {number_of_recs} recommendations for your query 🎉:")
     st.table(recs[["Conference Title", "Conference Webpage"]])
@@ -97,7 +93,7 @@ elif rec_type == "Doc2Vec" and query_type == "Textbox":
         st.stop()
     d2v_corpus = createDoc2VecObject(wiki_token, "processed_soup")
     d2v_model = createModel(d2v_corpus)
-    query_scores = getDoc2VecScores(preprocess_sentences, query, d2v_model)
+    query_scores = getDoc2VecScores(preprocessSentences, query, d2v_model)
     recs = getDoc2VecRecs(query_scores, number_of_recs, wikicfp)
     st.write(f"Here are the top {number_of_recs} recommendations for your query 🎉:")
     st.table(recs[["Conference Title", "Conference Webpage"]])
@@ -112,7 +108,7 @@ elif rec_type == "Doc2Vec" and query_type == "File":
         st.stop()
     d2v_corpus = createDoc2VecObject(wiki_token, "processed_soup")
     d2v_model = createModel(d2v_corpus)
-    query_scores = getDoc2VecScores(preprocess_sentences, query_string, d2v_model)
+    query_scores = getDoc2VecScores(preprocessSentences, query_string, d2v_model)
     recs = getDoc2VecRecs(query_scores, number_of_recs, wikicfp)
     st.write(f"Here are the top {number_of_recs} recommendations for your query 🎉:")
     st.table(recs[["Conference Title", "Conference Webpage"]])
