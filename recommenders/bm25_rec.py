@@ -47,12 +47,12 @@ if __name__ == "__main__":
 
     wiki_token = dataClean.processCorpus(wikicfp)
 
-    wiki_token = dataClean.multiprocessApply(dataClean.preprocess_sentences, wiki_token, "soup", "processed_soup")
+    wiki_token = dataClean.multiprocessApply(dataClean.preprocessSentences, wiki_token, "soup", "processed_soup")
 
     bm25_model = createBMObject(wiki_token, "processed_soup")
 
     query = "AMIA 2022 Informatics Summit: From discovering innovative methods to learning from exciting real-world applications, AMIA 2022 Informatics Summit attendees will experience the full range of cutting-edge work in translational informatics and clinical data science from inception to implementation. This conference is the ideal setting for researchers, educators, data scientists, software developers and analysts, students, and industry professionals. The size of the conference makes it ideal for developing meaningful new connections and partnerships while learning practical advice to solve real-world challenges. New to the AMIA 2022 Informatics Summit, we have expanded upon the previous Informatics Implementation track to include it as a new theme: Applied Informatics. In addition to selecting one of the three core Programmatic Tracks (Clinical Research Informatics, Data Science, Translational Bioinformatics), authors/presenters can also choose to designate their submission as part of the Applied Informatics theme to highlight the crucial application and implementation focus of their work. This is first time the Informatics Summit convenes outside of San Francisco. We are confident Chicago will bring new collaborations and connections. We look forward to receiving your submissions"
 
-    query_scores = getBM25Ranks(dataClean.preprocess_sentences, query, bm25_model)
+    query_scores = getBM25Ranks(dataClean.preprocessSentences, query, bm25_model)
 
     recs = getRecs(query_scores, 10, wikicfp)

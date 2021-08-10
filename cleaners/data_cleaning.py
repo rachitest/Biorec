@@ -84,7 +84,7 @@ def processCorpus(data):
 
     return wiki_token
 
-def preprocess_sentences(text):
+def preprocessSentences(text):
     stop_words = set(stopwords.words("english"))
     verb_codes = {"VB", "VBD", "VBG", "VBN", "VBP", "VBZ"}
 
@@ -134,4 +134,4 @@ if __name__ == "__main__":
 
     wiki_token = processCorpus(wikicfp)
 
-    wiki_token = multiprocessApply(preprocess_sentences, wiki_token, "soup", "processed_soup")
+    wiki_token = multiprocessApply(preprocessSentences, wiki_token, "soup", "processed_soup")
