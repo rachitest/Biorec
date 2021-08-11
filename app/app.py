@@ -7,9 +7,11 @@ from io import StringIO
 from pathlib import Path
 
 from gensim.models.doc2vec import Doc2Vec
+from sklearn.metrics.pairwise import cosine_similarity
 from cleaners.data_cleaning import readFolder, betterDates, uniqueConfsPerYear, multiprocessApply, processCorpus, preprocessSentences
-from recommenders.bm25_rec import createBMObject, getBM25Ranks, getRecs
+from recommenders.bm25_rec import getBM25Ranks, getRecs
 from recommenders.doc2vec_rec import getDoc2VecScores, getDoc2VecRecs
+from recommenders.tfidf_rec import createVectorizer, createTFIDFModel, processQuery, getTFIDFRecs
 
 st.set_page_config("Conference Recommendations", None, layout = "wide")
 st.title("Conference Recommendations")
@@ -113,5 +115,36 @@ elif rec_type == "Doc2Vec":
             st.table(recs[["Conference Title", "Conference Webpage"]])
             st.stop()
 elif rec_type == "TF-IDF":
-    st.write("This does nothing for now :(")
-    st.stop()
+    try:
+        tfidfvec = createVectorizer()
+        tfidf_model = createTFIDFModel(wiki_token, "tokenized_soup", tfidfvec)
+    except Exception:
+        st.error("Oh no. Something broke. Aborting app.")
+        st.stop()
+    if query_type == "File":
+        query = st.sidebar.file_uploader("Choose your query", type = ["txt"], help = "Please select the file you want conference recommendations for (must be a txt file)")
+        if query:
+            stringio = StringIO(query.getvalue().decode("utf-8"))
+            query_string = stringio.read()
+        else: 
+            st.write("Please enter the query you want conference recommendations for")
+            st.stop()
+        with st.spinner("Calculating your recommendations!"):
+            query = processQuery(query_string, preprocessSentences, tfidfvec)
+            query_scores = cosine_similarity(query, tfidf_model).flatten()
+            recs = getTFIDFRecs(query_scores, number_of_recs, wikicfp_corpus)
+            st.write(f"Here are the top {number_of_recs} recommendations for your query 🎉:")
+            st.table(recs[["Conference Title", "Conference Webpage"]])
+            st.stop()
+    elif query_type == "Textbox":
+        query = st.sidebar.text_area("Enter your query", '', help = "Please enter the query you want conference recommendations for")
+        if not query: 
+            st.write("Please enter the query you want conference recommendations for")
+            st.stop()
+        with st.spinner("Calculating your recommendations!"):
+            query = processQuery(query, preprocessSentences, tfidfvec)
+            query_scores = cosine_similarity(query, tfidf_model).flatten()
+            recs = getTFIDFRecs(query_scores, number_of_recs, wikicfp_corpus)
+            st.write(f"Here are the top {number_of_recs} recommendations for your query 🎉:")
+            st.table(recs[["Conference Title", "Conference Webpage"]])
+            st.stop()
