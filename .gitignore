@@ -1,6 +1,6 @@
 .vscode
 pyproject.toml
-*.csv
+wikicfp_csv
 *.yaml
 .devcontainer
 *.xlsx
