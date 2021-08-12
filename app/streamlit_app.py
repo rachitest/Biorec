@@ -8,7 +8,7 @@ from pathlib import Path
 
 from gensim.models.doc2vec import Doc2Vec
 from sklearn.metrics.pairwise import cosine_similarity
-from cleaners.data_cleaning import readFolder, betterDates, uniqueConfsPerYear, multiprocessApply, processCorpus, preprocessSentences
+from cleaners.data_cleaning import betterDates, uniqueConfsPerYear, multiprocessApply, processCorpus, preprocessSentences
 from recommenders.bm25_rec import getBM25Ranks, getRecs
 from recommenders.doc2vec_rec import getDoc2VecScores, getDoc2VecRecs
 from recommenders.tfidf_rec import createVectorizer, createTFIDFModel, processQuery, getTFIDFRecs
@@ -19,20 +19,18 @@ st.sidebar.title("Recommender Options")
 
 #check if tokenized corpus exists in directory
 with st.spinner("Setting up corpus, can take up to 5 minutes for the first run..."):
-    import os
-    st.write(os.getcwd())
-    st.stop
-    if Path("/app/vra_conference_rec_app/assets/wikicfp_corpus.pkl").is_file():
-        wikicfp_corpus = readFolder("/app/vra_conference_rec_app/assets/wikicfp_csv/")
-        wiki_token = pd.read_pickle("/app/vra_conference_rec_app/assets/wikicfp_corpus.pkl")
+    if Path("/assets/wikicfp_corpus.pkl").is_file():
+        csv_cols = ["Conference Title", "Conference Webpage", "Conference Date", "Conference Location", "WikiCFP Tags", "WikiCFP Link", "Conference Description"]
+        wikicfp_corpus = pd.read_csv("/assests/wicifp_corpus_raw.csv", usecols = csv_cols)
+        wiki_token = pd.read_pickle("/assets/wikicfp_corpus.pkl")
     else:
-        st.stop()
         nltk.download("punkt")
         nltk.download("averaged_perceptron_tagger")
         nltk.download("wordnet")
         nltk.download("stopwords")
         
-        wikicfp_corpus = readFolder("assets/wikicfp_csv/")
+        csv_cols = ["Conference Title", "Conference Webpage", "Conference Date", "Conference Location", "WikiCFP Tags", "WikiCFP Link", "Conference Description"]
+        wikicfp_corpus = pd.read_csv("/assests/wicifp_corpus_raw.csv", usecols = csv_cols)
         wikicfp_corpus = uniqueConfsPerYear(wikicfp_corpus)
         wikicfp_corpus = betterDates(wikicfp_corpus)
 
