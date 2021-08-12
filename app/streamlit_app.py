@@ -13,7 +13,7 @@ from recommenders.bm25_rec import getBM25Ranks, getRecs
 from recommenders.doc2vec_rec import getDoc2VecScores, getDoc2VecRecs
 from recommenders.tfidf_rec import createVectorizer, createTFIDFModel, processQuery, getTFIDFRecs
 
-st.set_page_config("Conference Recommendations", None, layout = "wide")
+st.set_page_config("Conference Recommendations", page_icon = "📚", layout = "wide")
 st.title("Conference Recommendations")
 st.sidebar.title("Recommender Options")
 
