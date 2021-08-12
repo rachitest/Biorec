@@ -20,7 +20,7 @@ st.sidebar.title("Recommender Options")
 #check if tokenized corpus exists in directory
 with st.spinner("Setting up corpus, can take up to 5 minutes for the first run..."):
     import os
-    print(os.getcwd())
+    st.write(os.getcwd())
     st.stop
     if Path("/app/vra_conference_rec_app/assets/wikicfp_corpus.pkl").is_file():
         wikicfp_corpus = readFolder("/app/vra_conference_rec_app/assets/wikicfp_csv/")
