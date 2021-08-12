@@ -19,9 +19,9 @@ st.sidebar.title("Recommender Options")
 
 #check if tokenized corpus exists in directory
 with st.spinner("Setting up corpus, can take up to 5 minutes for the first run..."):
-    if Path("~/assets/wikicfp_corpus.pkl").is_file():
-        wikicfp_corpus = readFolder("~/assets/wikicfp_csv/")
-        wiki_token = pd.read_pickle("~/assets/wikicfp_corpus.pkl")
+    if Path("/app/vra_conference_rec_app/assets/wikicfp_corpus.pkl").is_file():
+        wikicfp_corpus = readFolder("/app/vra_conference_rec_app/assets/wikicfp_csv/")
+        wiki_token = pd.read_pickle("/app/vra_conference_rec_app/assets/wikicfp_corpus.pkl")
     else:
         st.stop()
         nltk.download("punkt")
