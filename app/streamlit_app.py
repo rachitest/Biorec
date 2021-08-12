@@ -32,13 +32,13 @@ with st.spinner("Setting up corpus, can take up to 5 minutes for the first run..
         nltk.download("stopwords")
         
         csv_cols = ["Conference Title", "Conference Webpage", "Conference Date", "Conference Location", "WikiCFP Tags", "WikiCFP Link", "Conference Description"]
-        wikicfp_corpus = pd.read_csv("/assests/wicifp_corpus_raw.csv", usecols = csv_cols)
+        wikicfp_corpus = pd.read_csv("/app/vra_conference_rec_app/assets/wicifp_corpus_raw.csv", usecols = csv_cols)
         wikicfp_corpus = uniqueConfsPerYear(wikicfp_corpus)
         wikicfp_corpus = betterDates(wikicfp_corpus)
 
         wiki_token = processCorpus(wikicfp_corpus)
         wiki_token = multiprocessApply(preprocessSentences, wiki_token, "soup", "tokenized_soup")
-        wiki_token.to_pickle("assets/wikicfp_corpus.pkl")
+        wiki_token.to_pickle("/app/vra_conference_rec_app/assets/wikicfp_corpus.pkl")
 
 with st.container():
     st.write("The following is a 1000 row preview of the raw corpus:")
@@ -58,7 +58,7 @@ with st.sidebar.form(key = "form_1"):
 # create recommendations based on recommender algorithm and input type
 if rec_type == "BM25":
     try:
-        bm25_model = pickle.load(open("assets/models/bm25Modelv0.1.pkl", "rb"))
+        bm25_model = pickle.load(open("/app/vra_conference_rec_app/assets/models/bm25Modelv0.1.pkl", "rb"))
     except (OSError, IOError) as e:
         st.error("Model does not exist. Aborting app.")
         st.stop()
@@ -89,7 +89,7 @@ if rec_type == "BM25":
             st.stop()
 elif rec_type == "Doc2Vec":
     try:
-        d2v_model = Doc2Vec.load("assets/models/d2vModelv0.1.pkl")
+        d2v_model = Doc2Vec.load("/app/vra_conference_rec_app/assets/models/d2vModelv0.1.pkl")
     except FileNotFoundError:
         st.error("Model does not exist. Aborting app.")
         st.stop()
