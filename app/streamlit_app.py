@@ -21,8 +21,8 @@ st.sidebar.title("Recommender Options")
 with st.spinner("Setting up corpus, can take up to 5 minutes for the first run..."):
     if Path("/app/vra_conference_rec_app/assets/wikicfp_corpus.pkl").is_file():
         csv_cols = ["Conference Title", "Conference Webpage", "Conference Date", "Conference Location", "WikiCFP Tags", "WikiCFP Link", "Conference Description"]
-        wikicfp_corpus = pd.read_csv("~/assests/wikicfp_corpus_raw.csv", usecols = csv_cols)
-        wiki_token = pd.read_pickle("~/assets/wikicfp_corpus.pkl")
+        wikicfp_corpus = pd.read_csv("/app/vra_conference_rec_app/assets/wikicfp_corpus_raw.csv", usecols = csv_cols)
+        wiki_token = pd.read_pickle("/app/vra_conference_rec_app/assets/wikicfp_corpus.pkl")
     else:
         st.write("your filepaths are wrong, fix asap")
         st.stop()
