@@ -40,11 +40,11 @@ with st.spinner("Setting up corpus, can take up to 5 minutes for the first run..
         wiki_token = multiprocessApply(preprocessSentences, wiki_token, "soup", "tokenized_soup")
         wiki_token.to_pickle("/app/vra_conference_rec_app/assets/wikicfp_corpus.pkl")
 
-with st.container():
+with st.expander("Raw Corpus Preview"):
     st.write("The following is a 1000 row preview of the raw corpus:")
     st.dataframe(wikicfp_corpus.head(1000))
 
-with st.container():
+with st.expander("Tokenized Corpus Preview"):
     st.write("The following is a 1000 row preview of the tokenized corpus:")
     st.dataframe(wiki_token.head(1000))
 
