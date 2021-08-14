@@ -8,7 +8,7 @@ from pathlib import Path
 
 from gensim.models.doc2vec import Doc2Vec
 from sklearn.metrics.pairwise import cosine_similarity
-from cleaners.data_cleaning import betterDates, uniqueConfsPerYear, multiprocessApply, processCorpus, preprocessSentences
+from cleaners.data_cleaning import preprocessSentences
 from recommenders.bm25_rec import getBM25Ranks, getRecs
 from recommenders.doc2vec_rec import getDoc2VecScores, getDoc2VecRecs
 from recommenders.tfidf_rec import createVectorizer, createTFIDFModel, processQuery, getTFIDFRecs
