@@ -72,7 +72,7 @@ if rec_type == "BM25":
             st.stop()
         with st.spinner("Calculating your recommendations!"):
             query_scores = getBM25Ranks(preprocessSentences, query_string, bm25_model)
-            recs = getRecs(query_scores, number_of_recs, wikicfp_corpus)
+            recs = getRecs(query_scores, number_of_recs, wikicfp_corpus).reset_index()
             st.write(f"Here are the top {number_of_recs} recommendations for your query 🎉:")
             st.table(recs[["Conference Title", "Conference Webpage"]])
             st.stop()
@@ -83,7 +83,7 @@ if rec_type == "BM25":
             st.stop()
         with st.spinner("Calculating your recommendations!"):
             query_scores = getBM25Ranks(preprocessSentences, query, bm25_model)
-            recs = getRecs(query_scores, number_of_recs, wikicfp_corpus)
+            recs = getRecs(query_scores, number_of_recs, wikicfp_corpus).reset_index()
             st.write(f"Here are the top {number_of_recs} recommendations for your query 🎉:")
             st.table(recs[["Conference Title", "Conference Webpage"]])
             st.stop()
@@ -103,7 +103,7 @@ elif rec_type == "Doc2Vec":
             st.stop()
         with st.spinner("Calculating your recommendations!"):
             query_scores = getDoc2VecScores(preprocessSentences, query_string, d2v_model)
-            recs = getDoc2VecRecs(query_scores, number_of_recs, wikicfp_corpus)
+            recs = getDoc2VecRecs(query_scores, number_of_recs, wikicfp_corpus).reset_index()
             st.write(f"Here are the top {number_of_recs} recommendations for your query 🎉:")
             st.table(recs[["Conference Title", "Conference Webpage"]])
             st.stop()
@@ -114,7 +114,7 @@ elif rec_type == "Doc2Vec":
             st.stop()
         with st.spinner("Calculating your recommendations!"):
             query_scores = getDoc2VecScores(preprocessSentences, query, d2v_model)
-            recs = getDoc2VecRecs(query_scores, number_of_recs, wikicfp_corpus)
+            recs = getDoc2VecRecs(query_scores, number_of_recs, wikicfp_corpus).reset_index()
             st.write(f"Here are the top {number_of_recs} recommendations for your query 🎉:")
             st.table(recs[["Conference Title", "Conference Webpage"]])
             st.stop()
@@ -136,7 +136,7 @@ elif rec_type == "TF-IDF":
         with st.spinner("Calculating your recommendations!"):
             query = processQuery(query_string, preprocessSentences, tfidfvec)
             query_scores = cosine_similarity(query, tfidf_model).flatten()
-            recs = getTFIDFRecs(query_scores, number_of_recs, wikicfp_corpus)
+            recs = getTFIDFRecs(query_scores, number_of_recs, wikicfp_corpus).reset_index()
             st.write(f"Here are the top {number_of_recs} recommendations for your query 🎉:")
             st.table(recs[["Conference Title", "Conference Webpage"]])
             st.stop()
@@ -148,7 +148,7 @@ elif rec_type == "TF-IDF":
         with st.spinner("Calculating your recommendations!"):
             query = processQuery(query, preprocessSentences, tfidfvec)
             query_scores = cosine_similarity(query, tfidf_model).flatten()
-            recs = getTFIDFRecs(query_scores, number_of_recs, wikicfp_corpus)
+            recs = getTFIDFRecs(query_scores, number_of_recs, wikicfp_corpus).reset_index()
             st.write(f"Here are the top {number_of_recs} recommendations for your query 🎉:")
             st.table(recs[["Conference Title", "Conference Webpage"]])
             st.stop()
