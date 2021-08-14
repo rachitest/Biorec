@@ -32,19 +32,8 @@ with st.spinner("Setting up corpus, can take up to 5 minutes for the first run..
         wikicfp_corpus = pd.read_csv(raw_corpus_path, usecols = csv_cols)
         wiki_token = pd.read_pickle(token_corpus_path)
     else:
-        nltk.download("punkt")
-        nltk.download("averaged_perceptron_tagger")
-        nltk.download("wordnet")
-        nltk.download("stopwords")
-        
-        csv_cols = ["Conference Title", "Conference Webpage", "Conference Date", "Conference Location", "WikiCFP Tags", "WikiCFP Link", "Conference Description"]
-        wikicfp_corpus = pd.read_csv(raw_corpus_path, usecols = csv_cols)
-        wikicfp_corpus = uniqueConfsPerYear(wikicfp_corpus)
-        wikicfp_corpus = betterDates(wikicfp_corpus)
-
-        wiki_token = processCorpus(wikicfp_corpus)
-        wiki_token = multiprocessApply(preprocessSentences, wiki_token, "soup", "tokenized_soup")
-        wiki_token.to_pickle(token_corpus_path)
+        st.error("Oh no, the corpus does not exist. Aborting app.")
+        st.stop()
 
 with st.expander("Raw Corpus Preview"):
     st.write("The following is a 1000 row preview of the raw corpus:")
