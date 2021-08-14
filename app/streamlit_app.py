@@ -1,3 +1,4 @@
+import base64
 import pandas as pd
 import pickle
 import streamlit as st
@@ -23,6 +24,14 @@ token_corpus_path = app_root / "assets/wikicfp_corpus.pkl"
 raw_corpus_path = app_root / "assets/wikicfp_corpus_raw.csv"
 bm25_model_path = app_root / "assets/models/bm25Modelv0.1.pkl"
 d2v_model_path = app_root / "assets/models/d2vModelv0.1.pkl"
+
+# define download function
+def get_table_download_link(df):
+    df = df[["Conference Title", "Conference Webpage"]]
+    df["User Rating"] = None
+    val = df.to_csv(index=False)
+    b64 = base64.b64encode(val.encode()).decode()  
+    return f'<a href="data:file/csv;base64,{b64}"> Download File </a>'
 
 #check if tokenized corpus exists in directory
 with st.spinner("Setting up corpus, can take up to 5 minutes for the first run..."):
@@ -70,6 +79,14 @@ if rec_type == "BM25":
             recs.index += 1
             st.write(f"Here are the top {number_of_recs} recommendations for your query 🎉:")
             st.table(recs[["Conference Title", "Conference Webpage"]])
+
+            with st.sidebar.form(key = "subform_1"):
+                dl = st.radio("Do you want to download your recommendations?", ("Yes", "No"), help = "Will download file in csv format. Please add \".csv\" to file manually before saving")
+                submit_button = st.form_submit_button(label = "Submit")
+            
+            if dl == "Yes":
+                st.sidebar.markdown(get_table_download_link(recs), unsafe_allow_html=True)
+            
             st.stop()
     elif query_type == "Textbox":
         query = st.sidebar.text_area("Enter your query", '', help = "Please enter the query you want conference recommendations for")
@@ -82,6 +99,14 @@ if rec_type == "BM25":
             recs.index += 1
             st.write(f"Here are the top {number_of_recs} recommendations for your query 🎉:")
             st.table(recs[["Conference Title", "Conference Webpage"]])
+
+            with st.sidebar.form(key = "subform_2"):
+                dl = st.radio("Do you want to download your recommendations?", ("Yes", "No"), help = "Will download file in csv format. Please add \".csv\" to file manually before saving")
+                submit_button = st.form_submit_button(label = "Submit")
+            
+            if dl == "Yes":
+                st.sidebar.markdown(get_table_download_link(recs), unsafe_allow_html=True)
+            
             st.stop()
 elif rec_type == "Doc2Vec":
     try:
@@ -103,6 +128,14 @@ elif rec_type == "Doc2Vec":
             recs.index += 1
             st.write(f"Here are the top {number_of_recs} recommendations for your query 🎉:")
             st.table(recs[["Conference Title", "Conference Webpage"]])
+            
+            with st.sidebar.form(key = "subform_3"):
+                dl = st.radio("Do you want to download your recommendations?", ("Yes", "No"), help = "Will download file in csv format. Please add \".csv\" to file manually before saving")
+                submit_button = st.form_submit_button(label = "Submit")
+            
+            if dl == "Yes":
+                st.sidebar.markdown(get_table_download_link(recs), unsafe_allow_html=True)
+            
             st.stop()
     elif query_type == "Textbox":
         query = st.sidebar.text_area("Enter your query", '', help = "Please enter the query you want conference recommendations for")
@@ -115,6 +148,14 @@ elif rec_type == "Doc2Vec":
             recs.index += 1
             st.write(f"Here are the top {number_of_recs} recommendations for your query 🎉:")
             st.table(recs[["Conference Title", "Conference Webpage"]])
+            
+            with st.sidebar.form(key = "subform_4"):
+                dl = st.radio("Do you want to download your recommendations?", ("Yes", "No"), help = "Will download file in csv format. Please add \".csv\" to file manually before saving")
+                submit_button = st.form_submit_button(label = "Submit")
+            
+            if dl == "Yes":
+                st.sidebar.markdown(get_table_download_link(recs), unsafe_allow_html=True)
+            
             st.stop()
 elif rec_type == "TF-IDF":
     try:
@@ -138,6 +179,14 @@ elif rec_type == "TF-IDF":
             recs.index += 1
             st.write(f"Here are the top {number_of_recs} recommendations for your query 🎉:")
             st.table(recs[["Conference Title", "Conference Webpage"]])
+            
+            with st.sidebar.form(key = "subform_5"):
+                dl = st.radio("Do you want to download your recommendations?", ("Yes", "No"), help = "Will download file in csv format. Please add \".csv\" to file manually before saving")
+                submit_button = st.form_submit_button(label = "Submit")
+            
+            if dl == "Yes":
+                st.sidebar.markdown(get_table_download_link(recs), unsafe_allow_html=True)
+            
             st.stop()
     elif query_type == "Textbox":
         query = st.sidebar.text_area("Enter your query", '', help = "Please enter the query you want conference recommendations for")
@@ -151,4 +200,12 @@ elif rec_type == "TF-IDF":
             recs.index += 1
             st.write(f"Here are the top {number_of_recs} recommendations for your query 🎉:")
             st.table(recs[["Conference Title", "Conference Webpage"]])
+            
+            with st.sidebar.form(key = "subform_6"):
+                dl = st.radio("Do you want to download your recommendations?", ("Yes", "No"), help = "Will download file in csv format. Please add \".csv\" to file manually before saving")
+                submit_button = st.form_submit_button(label = "Submit")
+            
+            if dl == "Yes":
+                st.sidebar.markdown(get_table_download_link(recs), unsafe_allow_html=True)
+            
             st.stop()
