@@ -27,6 +27,7 @@ d2v_model_path = app_root / "assets/models/d2vModelv0.1.pkl"
 
 # define download function
 def get_table_download_link(df):
+    df = df.copy()
     df = df[["Conference Title", "Conference Webpage"]]
     df["User Rating"] = None
     val = df.to_csv(index=False)
