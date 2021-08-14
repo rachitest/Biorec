@@ -17,28 +17,34 @@ st.set_page_config("Conference Recommendations", page_icon = "📚", layout = "w
 st.title("Conference Recommendations")
 st.sidebar.title("Recommender Options")
 
+current_fp = Path(__file__)
+current_root = current_fp.parents[0]
+app_root = current_fp.parents[1]
+token_corpus_path = app_root / "assets/wikicfp_corpus.pkl"
+raw_corpus_path = app_root / "assets/wikicfp_corpus_raw.csv"
+bm25_model_path = app_root / "assets/models/bm25Modelv0.1.pkl"
+d2v_model_path = app_root / "assets/models/d2vModelv0.1.pkl"
+
 #check if tokenized corpus exists in directory
 with st.spinner("Setting up corpus, can take up to 5 minutes for the first run..."):
-    if Path("/app/vra_conference_rec_app/assets/wikicfp_corpus.pkl").is_file():
+    if token_corpus_path.is_file():
         csv_cols = ["Conference Title", "Conference Webpage", "Conference Date", "Conference Location", "WikiCFP Tags", "WikiCFP Link", "Conference Description"]
-        wikicfp_corpus = pd.read_csv("/app/vra_conference_rec_app/assets/wikicfp_corpus_raw.csv", usecols = csv_cols)
-        wiki_token = pd.read_pickle("/app/vra_conference_rec_app/assets/wikicfp_corpus.pkl")
+        wikicfp_corpus = pd.read_csv(raw_corpus_path, usecols = csv_cols)
+        wiki_token = pd.read_pickle(token_corpus_path)
     else:
-        st.write("your filepaths are wrong, fix asap")
-        st.stop()
         nltk.download("punkt")
         nltk.download("averaged_perceptron_tagger")
         nltk.download("wordnet")
         nltk.download("stopwords")
         
         csv_cols = ["Conference Title", "Conference Webpage", "Conference Date", "Conference Location", "WikiCFP Tags", "WikiCFP Link", "Conference Description"]
-        wikicfp_corpus = pd.read_csv("/app/vra_conference_rec_app/assets/wicifp_corpus_raw.csv", usecols = csv_cols)
+        wikicfp_corpus = pd.read_csv(raw_corpus_path, usecols = csv_cols)
         wikicfp_corpus = uniqueConfsPerYear(wikicfp_corpus)
         wikicfp_corpus = betterDates(wikicfp_corpus)
 
         wiki_token = processCorpus(wikicfp_corpus)
         wiki_token = multiprocessApply(preprocessSentences, wiki_token, "soup", "tokenized_soup")
-        wiki_token.to_pickle("/app/vra_conference_rec_app/assets/wikicfp_corpus.pkl")
+        wiki_token.to_pickle(token_corpus_path)
 
 with st.expander("Raw Corpus Preview"):
     st.write("The following is a 1000 row preview of the raw corpus:")
@@ -58,7 +64,7 @@ with st.sidebar.form(key = "form_1"):
 # create recommendations based on recommender algorithm and input type
 if rec_type == "BM25":
     try:
-        bm25_model = pickle.load(open("/app/vra_conference_rec_app/assets/models/bm25Modelv0.1.pkl", "rb"))
+        bm25_model = pickle.load(open(bm25_model_path, "rb"))
     except (OSError, IOError) as e:
         st.error("Model does not exist. Aborting app.")
         st.stop()
@@ -91,7 +97,7 @@ if rec_type == "BM25":
             st.stop()
 elif rec_type == "Doc2Vec":
     try:
-        d2v_model = Doc2Vec.load("/app/vra_conference_rec_app/assets/models/d2vModelv0.1.pkl")
+        d2v_model = Doc2Vec.load(str(d2v_model_path))
     except FileNotFoundError:
         st.error("Model does not exist. Aborting app.")
         st.stop()
