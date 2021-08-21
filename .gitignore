@@ -10,3 +10,6 @@ test.zip
 *.db
 __pycache__
 Conference Recommendations_files
+readme_assets/doc2vec_demo.webm
+readme_assets/doc2vec_demo.gif
+readme_assets/doc2vec_demo_upscaled.gif
