@@ -42,7 +42,7 @@ except LookupError:
     nltk.download("wordnet")
 try:
     nltk.data.find("corpora/stopwords")
-except:
+except LookupError:
     nltk.download("stopwords")
 finally:
     importlib.reload(nltk)
