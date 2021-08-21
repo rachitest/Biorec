@@ -14,9 +14,11 @@
 
 ### Background
 
-The Conference Recommender App was developed to simplify the publishing lives of academics!
+The Conference Recommender App was developed to simplify the publishing lives of academics.
 
-In the present day there is a glut of conferences to submit and no user-friendly way of parsing which conferences would be most relevant. The goal of this conference recommender is to accept abstracts or resumes *(eventually!)* as input and to recommend relevant conferences series that would be a good avenues for publication on topics similar to the input.
+In the present day there is an astronomical amount of conferences to submit to and no user-friendly way of parsing which conferences would be most relevant for any given publication/poster/abstract. 
+
+The goal of this conference recommender is to accept abstracts or resumes *(eventually)* as input and to recommend relevant conference series that would be good avenues for publications on topics similar to the input.
 
 ### Layout
 
@@ -37,7 +39,7 @@ You have two optional expanders:
 
 <details> 
     <summary> 
-        "Tokenized Corpus Preview": Shows the raw corpus preview shows the tokenized "soup" of data that the recommendation algorithms utilize; the soup is not human readable.
+        "Tokenized Corpus Preview": Shows the tokenized "soup" of data that the recommendation algorithms utilize; the soup is not human readable.
     </summary> 
 
 <br/><br/>
@@ -56,7 +58,7 @@ The Conference Recommender App can provide recommendation using 3 different algo
 
 The user also gets to choose the format in which the query is entered in to the recommender. Currently available choices are as a text file (.txt extension only) or as a plaintext query into a text box.
 
-The user also gets to choose the number of recommendations to recieve up to a maximum of 50 recommendation. The user can type out the exact number of recommendations required, or use the plus/minus buttons to increment or decrement the counter by steps of 5.
+The user also gets to choose the number of recommendations to recieve, up to a maximum of 50 recommendations. The user can type out the exact number of recommendations required, or use the plus/minus buttons to increment or decrement the counter by steps of 5.
 
 ### Usage
 
