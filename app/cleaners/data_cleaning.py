@@ -123,7 +123,7 @@ if __name__ == "__main__":
     nltk.download("wordnet")
     nltk.download("stopwords")
 
-    lemmaizer = WordNetLemmatizer()
+    lemmatizer = WordNetLemmatizer()
 
     wikicfp = readFolder("/workspaces/vra_conf_rec_app/assets/wikicfp_csv")
     wikicfp = uniqueConfsPerYear(wikicfp)
