@@ -1,4 +1,6 @@
 import base64
+import importlib
+import nltk
 import pandas as pd
 import pickle
 import streamlit as st
@@ -24,6 +26,26 @@ token_corpus_path = app_root / "assets/wikicfp_corpus.pkl"
 raw_corpus_path = app_root / "assets/wikicfp_corpus_raw.csv"
 bm25_model_path = app_root / "assets/models/bm25Modelv0.1.pkl"
 d2v_model_path = app_root / "assets/models/d2vModelv0.1.pkl"
+
+# download nltk resources
+try:
+    nltk.data.find("tokenizers/punkt")
+except LookupError:
+    nltk.download("punkt")
+try:
+    nltk.data.find("taggers/averaged_perceptron_tagger")
+except LookupError:
+    nltk.download("averaged_perceptron_tagger")
+try:
+    nltk.data.find("corpora/wordnet")
+except LookupError:
+    nltk.download("wordnet")
+try:
+    nltk.data.find("corpora/stopwords")
+except:
+    nltk.download("stopwords")
+finally:
+    importlib.reload(nltk)
 
 # define download function
 def get_table_download_link(df):
