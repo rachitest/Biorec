@@ -1,5 +1,5 @@
 # VRA: Conference Recommendation App
-![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/rachitest/vra_conference_rec_app/main/app/streamlit_app.py)
 ## Table of Contents
 
 1. [Background](#background)
