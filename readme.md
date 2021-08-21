@@ -30,7 +30,7 @@ Here's what the home page of the app looks like:
 
 You have two optional expanders:
 <details> 
-    <summary> "Raw Corpus Preview": Shows the raw corpus preview shows the raw, unedited data that the recommender uses for recommendations; is human readable.
+    <summary> Raw Corpus Preview: Shows the raw corpus preview shows the raw, unedited data that the recommender uses for recommendations; is human readable.
     </summary>
 
 <br/><br/>
@@ -39,7 +39,7 @@ You have two optional expanders:
 
 <details> 
     <summary> 
-        "Tokenized Corpus Preview": Shows the tokenized "soup" of data that the recommendation algorithms utilize; the soup is not human readable.
+        Tokenized Corpus Preview: Shows the tokenized "soup" of data that the recommendation algorithms utilize; the soup is not human readable.
     </summary> 
 
 <br/><br/>
@@ -56,9 +56,9 @@ The Conference Recommender App can provide recommendation using 3 different algo
 - [Doc2Vec](https://cs.stanford.edu/~quocle/paragraph_vector.pdf)
 - [TF-IDF](https://www.emerald.com/insight/content/doi/10.1108/eb026526/full/html)
 
-The user also gets to choose the format in which the query is entered in to the recommender. Currently available choices are as a text file (.txt extension only) or as a plaintext query into a text box.
+The user chooses the format in which the query is entered in to the recommender. Currently available choices are as a text file (.txt extension only) or as a plaintext query into a text box.
 
-The user also gets to choose the number of recommendations to recieve, up to a maximum of 50 recommendations. The user can type out the exact number of recommendations required, or use the plus/minus buttons to increment or decrement the counter by steps of 5.
+The user also selects the number of recommendations to recieve, up to a maximum of 50 recommendations. The user can type out the exact number of recommendations required, or use the plus/minus buttons to increment or decrement the counter by steps of 5.
 
 ### Usage
 
