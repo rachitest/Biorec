@@ -7,7 +7,7 @@
 ### Background 
 The Conference Recommender App was developed to simplify the publishing lives of academics!
 
-In the present day there is a glut of conferences to submit and no user-friendly way of parsing which conferences would be most relevant. The goal of this conference recommeder is to accept abstracts or *resumes (eventually!)* as input and to recommend relevant conferences series that would be a good avenues for publication on topics similar to the input.
+In the present day there is a glut of conferences to submit and no user-friendly way of parsing which conferences would be most relevant. The goal of this conference recommender is to accept abstracts or resumes *(eventually!)* as input and to recommend relevant conferences series that would be a good avenues for publication on topics similar to the input.
 
 ### Usage
 The Conference Recommender App can provide recommendation using 3 different algorithms (click on the link to learn more about each algorithm):
@@ -20,16 +20,18 @@ The Conference Recommender App can provide recommendation using 3 different algo
     Here's what the home page of the app looks like
     </summary>
 
+<br/><br/>
 ![Home Page](/readme_assets/home_page.png)
 </details>
 
-
-You have two optional expanders: 
+You have two optional expanders:
 <details> 
     <summary> "Raw Corpus Preview" (Click to find out!)
-    </summary> 
+    </summary>
 
+<br/><br/>
 The raw corpus preview shows the raw, unedited data that the recommender uses for recommendations, is human readable
+<br/><br/>
 ![Raw Corpus Preview](/readme_assets/raw_corpus.png)
 </details> 
 
@@ -40,6 +42,8 @@ and
         "Tokenized Corpus Preview" (Click to find out!)
     </summary> 
 
-The raw corpus preview shows the tokenized "soup" of data that the recommendation algorithms utilized, the soup is not human readable :slightly_frowning_face:
+<br/><br/>
+The raw corpus preview shows the tokenized "soup" of data that the recommendation algorithms utilized, the soup is not human readable
+<br/><br/>
 ![Raw Corpus Preview](/readme_assets/tokenized_corpus.png)
 </details>
