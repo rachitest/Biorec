@@ -54,7 +54,7 @@ def get_table_download_link(df):
     df["User Rating"] = None
     val = df.to_csv(index=False)
     b64 = base64.b64encode(val.encode()).decode()  
-    return f'<a href="data:file/csv;base64,{b64}"> Download File </a>'
+    return f'<a href="data:file/csv;base64,{b64}" download="conference_recommendation_output.csv"> Download File </a>'
 
 #check if tokenized corpus exists in directory
 with st.spinner("Setting up corpus, can take up to 5 minutes for the first run..."):
@@ -104,7 +104,7 @@ if rec_type == "BM25":
             st.table(recs[["Conference Title", "Conference Webpage"]])
 
             with st.sidebar.form(key = "subform_1"):
-                dl = st.radio("Do you want to download your recommendations?", ("Yes", "No"), help = "Will download file in csv format. Please add \".csv\" to file manually before saving")
+                dl = st.radio("Do you want to download your recommendations?", ("Yes", "No"), help = "Will download file in csv format.")
                 submit_button = st.form_submit_button(label = "Submit")
             
             if dl == "Yes":
@@ -124,7 +124,7 @@ if rec_type == "BM25":
             st.table(recs[["Conference Title", "Conference Webpage"]])
 
             with st.sidebar.form(key = "subform_2"):
-                dl = st.radio("Do you want to download your recommendations?", ("Yes", "No"), help = "Will download file in csv format. Please add \".csv\" to file manually before saving")
+                dl = st.radio("Do you want to download your recommendations?", ("Yes", "No"), help = "Will download file in csv format.")
                 submit_button = st.form_submit_button(label = "Submit")
             
             if dl == "Yes":
@@ -153,7 +153,7 @@ elif rec_type == "Doc2Vec":
             st.table(recs[["Conference Title", "Conference Webpage"]])
             
             with st.sidebar.form(key = "subform_3"):
-                dl = st.radio("Do you want to download your recommendations?", ("Yes", "No"), help = "Will download file in csv format. Please add \".csv\" to file manually before saving")
+                dl = st.radio("Do you want to download your recommendations?", ("Yes", "No"), help = "Will download file in csv format.")
                 submit_button = st.form_submit_button(label = "Submit")
             
             if dl == "Yes":
@@ -173,7 +173,7 @@ elif rec_type == "Doc2Vec":
             st.table(recs[["Conference Title", "Conference Webpage"]])
             
             with st.sidebar.form(key = "subform_4"):
-                dl = st.radio("Do you want to download your recommendations?", ("Yes", "No"), help = "Will download file in csv format. Please add \".csv\" to file manually before saving")
+                dl = st.radio("Do you want to download your recommendations?", ("Yes", "No"), help = "Will download file in csv format.")
                 submit_button = st.form_submit_button(label = "Submit")
             
             if dl == "Yes":
@@ -204,7 +204,7 @@ elif rec_type == "TF-IDF":
             st.table(recs[["Conference Title", "Conference Webpage"]])
             
             with st.sidebar.form(key = "subform_5"):
-                dl = st.radio("Do you want to download your recommendations?", ("Yes", "No"), help = "Will download file in csv format. Please add \".csv\" to file manually before saving")
+                dl = st.radio("Do you want to download your recommendations?", ("Yes", "No"), help = "Will download file in csv format.")
                 submit_button = st.form_submit_button(label = "Submit")
             
             if dl == "Yes":
@@ -225,7 +225,7 @@ elif rec_type == "TF-IDF":
             st.table(recs[["Conference Title", "Conference Webpage"]])
             
             with st.sidebar.form(key = "subform_6"):
-                dl = st.radio("Do you want to download your recommendations?", ("Yes", "No"), help = "Will download file in csv format. Please add \".csv\" to file manually before saving")
+                dl = st.radio("Do you want to download your recommendations?", ("Yes", "No"), help = "Will download file in csv format.")
                 submit_button = st.form_submit_button(label = "Submit")
             
             if dl == "Yes":
