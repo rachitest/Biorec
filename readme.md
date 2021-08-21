@@ -64,15 +64,13 @@ The user also selects the number of recommendations to recieve, up to a maximum 
 
 <h4 id="textguide">Text Guide</h4>
 
-Use the recommender in 7 easy steps:
+Use the recommender in 8 easy steps:
 
 1. Select the recommendation algorithm &#8594; **The default recommendation algorithm is BM25**
 2. Select the input method &#8594; **The default input format is text file**
 3. Enter the number of desired recommendations &#8594; **The default number of recommendations is 10**
-
-*Upon the completion of step 3 press the  "Submit" button located below the number of recommendations*
-
-4. Enter the query in the query input option available &#8594; **The default input option is file**
+4. Upon the completion of step 3 press the  "Submit" button located below the number of recommendations
+5. Enter the query in the query input option available &#8594; **The default input option is file**
     <details> 
         <summary> 
             If you selected file you should see the following file picker 
@@ -89,9 +87,9 @@ Use the recommender in 7 easy steps:
     ![file picker](/readme_assets/text_box.png) 
     </details>
 
-5. View your recommendations
-6. Choose if you want to download the recommendations (Download only available in the form of a csv file) &#8594; **The default is Yes**
-7. Repeat steps 1-6 for as many permutations as desired
+6. View your recommendations
+7. Choose if you want to download the recommendations (Download only available in the form of a csv file) &#8594; **The default is Yes**
+8. Repeat steps 1-7 for as many permutations as desired
 
 <h4 id="gifguide">GIF Guide</h4>
 
