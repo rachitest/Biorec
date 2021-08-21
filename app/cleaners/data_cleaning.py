@@ -2,6 +2,7 @@
 import glob
 from io import BytesIO
 import nltk
+import pickle
 
 import multiprocessing as mp
 import numpy as np
@@ -118,6 +119,8 @@ def multiprocessApply(function, corpus, data_col, new_col):
 
 # %%
 if __name__ == "__main__":
+    pickle.HIGHEST_PROTOCOL = 4
+
     nltk.download("punkt")
     nltk.download("averaged_perceptron_tagger")
     nltk.download("wordnet")
@@ -131,4 +134,6 @@ if __name__ == "__main__":
 
     wiki_token = processCorpus(wikicfp)
 
-    wiki_token = multiprocessApply(preprocessSentences, wiki_token, "soup", "processed_soup")
+    wiki_token = multiprocessApply(preprocessSentences, wiki_token, "soup", "tokenized_soup")
+
+    pickle.dump(wiki_token, open("/workspaces/vra_conf_rec_app/assets/wikicfp_corpus.pkl", "wb"))

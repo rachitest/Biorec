@@ -1,4 +1,5 @@
 import gensim.models
+import pickle
 
 import numpy as np
 import pandas as pd
@@ -34,6 +35,8 @@ def getDoc2VecRecs(model_scores, top_n, corpus):
     return final_recs
 
 if __name__ == "__main__":
+    pickle.HIGHEST_PROTOCOL = 4
+
     wiki_token = pd.read_pickle("/workspaces/vra_conf_rec_app/assets/wikicfp_corpus.pkl")
 
     d2v_corpus = createDoc2VecObject(wiki_token, "tokenized_soup")

@@ -29,7 +29,9 @@ def getTFIDFRecs(model_scores, top_n, corpus):
     return final_recs
 
 if __name__ == "__main__":
-    wiki_token = pd.read_pickle("/assets/wikicfp_corpus.pkl")
+    pickle.HIGHEST_PROTOCOL = 4
+
+    wiki_token = pd.read_pickle("/workspaces/vra_conf_rec_app/assets/wikicfp_corpus.pkl")
 
     tfidfvec = createVectorizer()
 
