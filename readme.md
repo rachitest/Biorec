@@ -99,6 +99,8 @@ Here I demonstrate how to use the Conference Recommendation App with the Doc2Vec
 
 ### Notes
 
+To reset the app press: Ctrl+Shift+R
+
 For reviewers:
 
 1. The downloaded csv file will contain a column with the title "Rating"
