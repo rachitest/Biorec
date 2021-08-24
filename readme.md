@@ -1,5 +1,8 @@
 # VRA: Conference Recommendation App
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://conf-rec.herokuapp.com/)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/rachitest/vra_conference_rec_app/streamlit/app/streamlit_app.py)
+
+![Heroku](https://pyheroku-badge.herokuapp.com/?app=conf-rec&style=flat-square)
+
 ## Table of Contents
 
 1. [Background](#background)
