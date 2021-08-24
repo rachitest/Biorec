@@ -27,6 +27,12 @@ raw_corpus_path = app_root / "assets/wikicfp_corpus_raw.csv"
 bm25_model_path = app_root / "assets/models/bm25Modelv0.1.pkl"
 d2v_model_path = app_root / "assets/models/d2vModelv0.1.pkl"
 
+# download nltk resources
+nltk.download("punkt")
+nltk.download("averaged_perceptron_tagger")
+nltk.download("wordnet")
+nltk.download("stopwords")
+
 # define download function
 def get_table_download_link(df):
     df = df.copy()
