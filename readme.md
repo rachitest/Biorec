@@ -1,5 +1,5 @@
 # VRA: Conference Recommendation App
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/rachitest/vra_conference_rec_app/streamlit/app/streamlit_app.py) ![Heroku](https://pyheroku-badge.herokuapp.com/?app=conf-rec&style=flat-square)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/rachitest/vra_conference_rec_app/streamlit/app/streamlit_app.py) [![Heroku](https://pyheroku-badge.herokuapp.com/?app=conf-rec&style=flat-square)](https://conf-rec.herokuapp.com/)
 
 ## Table of Contents
 
