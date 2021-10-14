@@ -58,7 +58,8 @@ with st.expander("Tokenized Corpus Preview"):
 with st.sidebar.form(key = "form_1"):
     rec_type = st.radio("Choose a recommender", ("BM25", "Doc2Vec", "TF-IDF"))
     query_type = st.radio("Choose query format", ("File", "Textbox"))
-    number_of_recs = st.number_input("How many reccomendations would you like", 5, 50, value = 10, step = 5) 
+    number_of_recs = st.number_input("How many reccomendations would you like", 5, 50, value = 10, step = 5)
+    download_check = st.checkbox("Do you want to download your recommendations?", True, help = "Will download file in csv format.")
     submit_button = st.form_submit_button(label = "Submit")
 
 # create recommendations based on recommender algorithm and input type
@@ -82,16 +83,12 @@ if rec_type == "BM25":
             recs.index += 1
             st.write(f"Here are the top {number_of_recs} recommendations for your query 🎉:")
             st.table(recs[["Conference Title", "Conference Webpage"]])
-
-            with st.sidebar.form(key = "subform_1"):
-                dl = st.radio("Do you want to download your recommendations?", ("Yes", "No"), help = "Will download file in csv format.")
-                submit_button = st.form_submit_button(label = "Submit")
             
-            if dl == "Yes":
+            if download_check:
                 dl_file = convert_df_to_file(recs)
 
                 st.sidebar.download_button(
-                    label = "Download Recommendations as CSV",
+                    label = "Download CSV",
                     data = dl_file,
                     file_name = "conference_recommendation_output.csv",
                     mime = "text/csv"
@@ -110,15 +107,11 @@ if rec_type == "BM25":
             st.write(f"Here are the top {number_of_recs} recommendations for your query 🎉:")
             st.table(recs[["Conference Title", "Conference Webpage"]])
 
-            with st.sidebar.form(key = "subform_2"):
-                dl = st.radio("Do you want to download your recommendations?", ("Yes", "No"), help = "Will download file in csv format.")
-                submit_button = st.form_submit_button(label = "Submit")
-            
-            if dl == "Yes":
+            if download_check:
                 dl_file = convert_df_to_file(recs)
 
                 st.sidebar.download_button(
-                    label = "Download Recommendations as CSV",
+                    label = "Download CSV",
                     data = dl_file,
                     file_name = "conference_recommendation_output.csv",
                     mime = "text/csv"
@@ -146,15 +139,11 @@ elif rec_type == "Doc2Vec":
             st.write(f"Here are the top {number_of_recs} recommendations for your query 🎉:")
             st.table(recs[["Conference Title", "Conference Webpage"]])
             
-            with st.sidebar.form(key = "subform_3"):
-                dl = st.radio("Do you want to download your recommendations?", ("Yes", "No"), help = "Will download file in csv format.")
-                submit_button = st.form_submit_button(label = "Submit")
-            
-            if dl == "Yes":
+            if download_check:
                 dl_file = convert_df_to_file(recs)
 
                 st.sidebar.download_button(
-                    label = "Download Recommendations as CSV",
+                    label = "Download CSV",
                     data = dl_file,
                     file_name = "conference_recommendation_output.csv",
                     mime = "text/csv"
@@ -173,15 +162,11 @@ elif rec_type == "Doc2Vec":
             st.write(f"Here are the top {number_of_recs} recommendations for your query 🎉:")
             st.table(recs[["Conference Title", "Conference Webpage"]])
             
-            with st.sidebar.form(key = "subform_4"):
-                dl = st.radio("Do you want to download your recommendations?", ("Yes", "No"), help = "Will download file in csv format.")
-                submit_button = st.form_submit_button(label = "Submit")
-            
-            if dl == "Yes":
+            if download_check:
                 dl_file = convert_df_to_file(recs)
 
                 st.sidebar.download_button(
-                    label = "Download Recommendations as CSV",
+                    label = "Download CSV",
                     data = dl_file,
                     file_name = "conference_recommendation_output.csv",
                     mime = "text/csv"
@@ -211,15 +196,11 @@ elif rec_type == "TF-IDF":
             st.write(f"Here are the top {number_of_recs} recommendations for your query 🎉:")
             st.table(recs[["Conference Title", "Conference Webpage"]])
             
-            with st.sidebar.form(key = "subform_5"):
-                dl = st.radio("Do you want to download your recommendations?", ("Yes", "No"), help = "Will download file in csv format.")
-                submit_button = st.form_submit_button(label = "Submit")
-            
-            if dl == "Yes":
+            if download_check:
                 dl_file = convert_df_to_file(recs)
 
                 st.sidebar.download_button(
-                    label = "Download Recommendations as CSV",
+                    label = "Download CSV",
                     data = dl_file,
                     file_name = "conference_recommendation_output.csv",
                     mime = "text/csv"
@@ -239,15 +220,11 @@ elif rec_type == "TF-IDF":
             st.write(f"Here are the top {number_of_recs} recommendations for your query 🎉:")
             st.table(recs[["Conference Title", "Conference Webpage"]])
             
-            with st.sidebar.form(key = "subform_6"):
-                dl = st.radio("Do you want to download your recommendations?", ("Yes", "No"), help = "Will download file in csv format.")
-                submit_button = st.form_submit_button(label = "Submit")
-            
-            if dl == "Yes":
+            if download_check:
                 dl_file = convert_df_to_file(recs)
 
                 st.sidebar.download_button(
-                    label = "Download Recommendations as CSV",
+                    label = "Download CSV",
                     data = dl_file,
                     file_name = "conference_recommendation_output.csv",
                     mime = "text/csv"
