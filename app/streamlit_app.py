@@ -27,14 +27,14 @@ raw_corpus_path = app_root / "assets/wikicfp_corpus_raw.csv"
 bm25_model_path = app_root / "assets/models/bm25Modelv0.1.pkl"
 d2v_model_path = app_root / "assets/models/d2vModelv0.1.pkl"
 
-# define download function
-def get_table_download_link(df):
+# define conversion function to prep recommendations for download
+@st.cache()
+def convert_df_to_file(df):
     df = df.copy()
     df = df[["Conference Title", "Conference Webpage"]]
     df["User Rating"] = None
-    val = df.to_csv(index=False)
-    b64 = base64.b64encode(val.encode()).decode()  
-    return f'<a href="data:file/csv;base64,{b64}" download="conference_recommendation_output.csv"> Download File </a>'
+
+    return df.to_csv(index=False)
 
 #check if tokenized corpus exists in directory
 with st.spinner("Setting up corpus, can take up to 5 minutes for the first run..."):
@@ -88,7 +88,14 @@ if rec_type == "BM25":
                 submit_button = st.form_submit_button(label = "Submit")
             
             if dl == "Yes":
-                st.sidebar.markdown(get_table_download_link(recs), unsafe_allow_html=True)
+                dl_file = convert_df_to_file(recs)
+
+                st.sidebar.download_button(
+                    label = "Download Recommendations as CSV",
+                    data = dl_file,
+                    file_name = "conference_recommendation_output.csv",
+                    mime = "text/csv"
+                )
             
             st.stop()
     elif query_type == "Textbox":
@@ -108,7 +115,14 @@ if rec_type == "BM25":
                 submit_button = st.form_submit_button(label = "Submit")
             
             if dl == "Yes":
-                st.sidebar.markdown(get_table_download_link(recs), unsafe_allow_html=True)
+                dl_file = convert_df_to_file(recs)
+
+                st.sidebar.download_button(
+                    label = "Download Recommendations as CSV",
+                    data = dl_file,
+                    file_name = "conference_recommendation_output.csv",
+                    mime = "text/csv"
+                )
             
             st.stop()
 elif rec_type == "Doc2Vec":
@@ -137,7 +151,14 @@ elif rec_type == "Doc2Vec":
                 submit_button = st.form_submit_button(label = "Submit")
             
             if dl == "Yes":
-                st.sidebar.markdown(get_table_download_link(recs), unsafe_allow_html=True)
+                dl_file = convert_df_to_file(recs)
+
+                st.sidebar.download_button(
+                    label = "Download Recommendations as CSV",
+                    data = dl_file,
+                    file_name = "conference_recommendation_output.csv",
+                    mime = "text/csv"
+                )
             
             st.stop()
     elif query_type == "Textbox":
@@ -157,7 +178,14 @@ elif rec_type == "Doc2Vec":
                 submit_button = st.form_submit_button(label = "Submit")
             
             if dl == "Yes":
-                st.sidebar.markdown(get_table_download_link(recs), unsafe_allow_html=True)
+                dl_file = convert_df_to_file(recs)
+
+                st.sidebar.download_button(
+                    label = "Download Recommendations as CSV",
+                    data = dl_file,
+                    file_name = "conference_recommendation_output.csv",
+                    mime = "text/csv"
+                )
             
             st.stop()
 elif rec_type == "TF-IDF":
@@ -188,7 +216,14 @@ elif rec_type == "TF-IDF":
                 submit_button = st.form_submit_button(label = "Submit")
             
             if dl == "Yes":
-                st.sidebar.markdown(get_table_download_link(recs), unsafe_allow_html=True)
+                dl_file = convert_df_to_file(recs)
+
+                st.sidebar.download_button(
+                    label = "Download Recommendations as CSV",
+                    data = dl_file,
+                    file_name = "conference_recommendation_output.csv",
+                    mime = "text/csv"
+                )
             
             st.stop()
     elif query_type == "Textbox":
@@ -209,6 +244,13 @@ elif rec_type == "TF-IDF":
                 submit_button = st.form_submit_button(label = "Submit")
             
             if dl == "Yes":
-                st.sidebar.markdown(get_table_download_link(recs), unsafe_allow_html=True)
+                dl_file = convert_df_to_file(recs)
+
+                st.sidebar.download_button(
+                    label = "Download Recommendations as CSV",
+                    data = dl_file,
+                    file_name = "conference_recommendation_output.csv",
+                    mime = "text/csv"
+                )
             
             st.stop()
