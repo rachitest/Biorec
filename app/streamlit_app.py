@@ -15,7 +15,18 @@ from recommenders.bm25_rec import getBM25Ranks, getRecs
 from recommenders.doc2vec_rec import getDoc2VecScores, getDoc2VecRecs
 from recommenders.tfidf_rec import createVectorizer, createTFIDFModel, processQuery, getTFIDFRecs
 
-st.set_page_config("Conference Recommendations", page_icon = "📚", layout = "wide")
+st.set_page_config(
+    "Conference Recommendations",
+    page_icon = "📚",
+    layout = "wide",
+    menu_items = {
+        "Get Help": "https://github.com/rachitest/VRA_Conference_Rec_App",
+        "Report a Bug": "https://github.com/rachitest/VRA_Conference_Rec_App/issues",
+        "About": """
+        The Conference Recommender App was developed to simplify the publishing lives of academics.\n
+        In the present day there is an astronomical amount of conferences to submit to and no user-friendly way of parsing which conferences would be most relevant for any given publication/poster/abstract.\n
+        The goal of this conference recommender is to accept abstracts or resumes *(eventually)* as input and to recommend relevant conference series that would be good avenues for publications on topics similar to the input.\n"""}
+)
 st.title("Conference Recommendations")
 st.sidebar.title("Recommender Options")
 
