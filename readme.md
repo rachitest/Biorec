@@ -1,4 +1,4 @@
-# VRA: Conference Recommendation App
+# Biorec: Conference and Journal Recommendation App
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/rachitest/vra_conference_rec_app/main/app/streamlit_app.py) [![Heroku](https://pyheroku-badge.herokuapp.com/?app=conf-rec&style=flat-square)](https://conf-rec.herokuapp.com/)
 
 ## Table of Contents
@@ -15,7 +15,7 @@
 
 ### Background
 
-The Conference Recommender App was developed to simplify the publishing lives of academics.
+Biorec was developed to simplify the publishing lives of academics.
 
 In the present day there is an astronomical amount of conferences to submit to and no user-friendly way of parsing which conferences would be most relevant for any given publication/poster/abstract. 
 
@@ -49,13 +49,14 @@ You have two optional expanders:
 
 <h4 id="sidebar">Side Bar</h4>
 
-The side bar contains input and output options for the Conference Recommender App.
+The side bar contains input and output options for Biorec.
 
-The Conference Recommender App can provide recommendation using 3 different algorithms:
+Biorec can provide recommendation using 4 different algorithms:
 
 - [Okapi BM25 (ATIRE)](https://dl.acm.org/doi/10.1145/2682862.2682863)
 - [Doc2Vec](https://cs.stanford.edu/~quocle/paragraph_vector.pdf)
 - [TF-IDF](https://www.emerald.com/insight/content/doi/10.1108/eb026526/full/html)
+- [BERT](https://arxiv.org/abs/1810.04805)
 
 The user chooses the format in which the query is entered in to the recommender. Currently available choices are as a text file (.txt extension only) or as a plaintext query into a text box.
 
